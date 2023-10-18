@@ -1,0 +1,37 @@
+/*----------  general styles
+------------------------------------------------------------------------------*/
+
+.grey-bg {
+  background-color: $greyf4;
+	border-radius: 5px;
+}
+
+.white-bgc {
+	background-color: $white;
+	border-radius: 5px;
+}
+.green-bgc {
+	background-color: $green;
+	border-radius: 5px;
+}
+.light-blue-bgc {
+	background-color: #c9ecff;
+}
+.full-width {
+	width: 100%;
+	float: left;
+}
+.full-width-centered {
+	width: 100%;
+	text-align: center;
+}
+.hidden-section {
+	display: none;
+}
+
+.image-wrap {
+	img {
+		width: 100%;
+		height: auto;
+	}
+}

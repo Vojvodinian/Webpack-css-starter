@@ -1,0 +1,276 @@
+
+/*----------  responsive breakpoints
+------------------------------------------------------------------------------*/
+
+@mixin breakpoint ($value) {
+    @if $value == 'phone' { // mobile
+        @media only screen and (max-width : 767px) {
+            @content;
+        }
+    }
+
+    @else if $value == 'tablet' { // tablet
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            @content;
+        }
+    }
+
+    @else if $value == 'touch' { // mobile and tablet
+        @media only screen and (max-width: 1024px) {
+            @content;
+        }
+    }
+
+    @else if $value == 'desktop' { // desktop
+        @media only screen and (min-width: 1025px) {
+            @content
+        }
+    }
+
+    @else if $value == 'desktop-tablet' { // desktop and tablet
+        @media only screen and (min-width: 768px) {
+            @content
+        }
+    }
+
+    @else {
+        @media only screen and (max-width: $value) {
+            @content;
+        }
+    }
+}
+
+/*---------- retina sprite
+------------------------------------------------------------------------------*/
+
+// if you don't need retina display icons, exclude @media part of code
+@mixin sprite($sprite) {
+    background: sprite-url($icons) no-repeat sprite-position($icons, $sprite);
+    height: image-height(sprite-file($icons, $sprite));
+    width: image-width(sprite-file($icons, $sprite));
+
+    @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 2) {
+        background: sprite-url($icons2x) no-repeat round(nth(sprite-position($icons2x, $sprite), 1) / 2) round(nth(sprite-position($icons2x, $sprite), 2) / 2);
+        background-size: (image-width(sprite-path($icons2x)) / 2) (image-height(sprite-path($icons2x)) / 2);
+        height: image-height(sprite-file($icons2x, $sprite)) / 2;
+        width: image-width(sprite-file($icons2x, $sprite)) / 2;
+    }
+}
+
+//----------  font smoothing
+//------------------------------------------------------------------------------
+@mixin font-smoothing ($val: antialiased) {
+    -webkit-font-smoothing: $val;
+    -moz-font-smoothing: $val;
+    -ms-font-smoothing: $val;
+    -o-font-smoothing: $val;
+}
+
+
+/*----------  input placeholder
+------------------------------------------------------------------------------*/
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+/*----------  base float
+------------------------------------------------------------------------------*/
+
+@mixin base-float {
+    width: 100%;
+    float: left;
+}
+
+/*----------  Text Overflow
+------------------------------------------------------------------------------*/
+
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*----------  vertical align
+------------------------------------------------------------------------------*/
+
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+/*---------- horizontal align
+------------------------------------------------------------------------------*/
+
+@mixin horizontal-align {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+/*---------- vertical and horizontal align
+------------------------------------------------------------------------------*/
+
+@mixin center-align {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*----------  appearance
+------------------------------------------------------------------------------*/
+
+@mixin appearance {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+}
+
+/*----------  hover for icons placed inside buttons
+------------------------------------------------------------------------------*/
+
+@mixin icons-hover($icon) {
+    .btn-ico {
+        &:hover {
+            .#{$icon} {
+                @include sprite($icon + '-h');
+            }
+        }
+
+        .#{$icon} {
+            @include sprite($icon);
+        }
+    }
+}
+
+/*----------  hover for icons placed inside file upload control
+------------------------------------------------------------------------------*/
+
+@mixin customfile-button-hover($icon) {
+    .customfile {
+        &:hover {
+            .customfile-button .#{$icon} {
+                @include sprite($icon + '-h');
+            }
+        }
+
+        .customfile-button .#{$icon} {
+            @include sprite($icon);
+        }
+    }
+}
+
+/*----------  hover for icons placed inside delivery-type
+------------------------------------------------------------------------------*/
+
+@mixin icons-delivery-type($icon) {
+    .delivery-type fieldset.#{$icon} {
+        input:checked + label,
+        label:hover {
+            i {
+                @include sprite('ico-' + $icon + '-h');
+            }
+        }
+
+        i {
+            @include sprite('ico-' + $icon);
+        }
+
+        @include breakpoint(touch) {
+            label:hover {
+                i {
+                    @include sprite('ico-' + $icon);
+                }
+            }
+        }
+    }
+}
+
+@mixin stretch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*----------  border radius
+------------------------------------------------------------------------------*/
+
+@mixin border-and-radius($radius, $color) {
+    border-radius: $radius;
+    border: 1px solid $color;
+}
+
+@mixin calc($property, $expression) {
+    #{$property}: -moz-calc(#{$expression});
+    #{$property}: -webkit-calc(#{$expression});
+    #{$property}: calc(#{$expression});
+}
+
+/*----------  infinite rotation (example infinite-rotation(rotate, 1s, linear, infinite, 0s);)
+------------------------------------------------------------------------------*/
+
+@mixin infinite-rotation ($animation, $duration, $easing, $iterations, $delay) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-iteration-count: $iterations;
+    -webkit-animation-timing-function: $easing;
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-iteration-count: $iterations;
+    animation-timing-function: $easing;
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-iteration-count: $iterations;
+    -o-animation-timing-function: $easing;
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-iteration-count: $iterations;
+    animation-timing-function: $easing;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0);
+    }
+}
+/*----------  profile photo
+------------------------------------------------------------------------------*/
+
+@mixin profile-photo($dimension) {
+    .profile-photo-#{$dimension} {
+        img {
+            width: unquote("#{$dimension} + px");
+            height: unquote("#{$dimension} + px");
+        }
+    }
+}

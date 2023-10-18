@@ -1,0 +1,28 @@
+/*----------  layout
+------------------------------------------------------------------------------*/
+
+html, body {
+	height: 100%;
+}
+body {
+	overflow-x: hidden;
+	min-width: 320px;
+	background: $greyf4;
+	color: $grey53;
+	font-size: 14px;
+	font-family: 'Museo Sans', 'Arial', 'Helvetica', sans-serif;
+	font-weight: 300;
+	@include breakpoint(touch) {
+		background: red;
+	}
+}
+.container {
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	max-width: 100%;
+}
+
+.half-width {
+	width: 50%;
+}

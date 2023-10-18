@@ -1,0 +1,208 @@
+/*----------  helpers
+------------------------------------------------------------------------------*/
+
+%clearfix {
+	&::before, &::after {
+		content: '';
+		display: table;
+	}
+
+	&::after {
+		clear: both;
+	}
+}
+
+.hide { display: none !important;}
+.show { display: block;}
+.clear { clear: both;}
+.no-margin { margin: 0 !important;}
+.no-padding {padding: 0 !important;}
+.fleft { float: left;}
+.fright { float: right;}
+.no-overflow { overflow: hidden; }
+.horizontal-align { text-align: center; }
+.display-block { display: block; }
+.display-inline-block { display: inline-block; }
+
+.move-from-screen {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+}
+
+%visuallyhidden {
+	margin: -1px;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	position: absolute;
+}
+
+.visually-hidden {
+	@extend %visuallyhidden;
+}
+
+* {
+	&,
+	&::before,
+	&::after {
+		box-sizing: border-box;
+	}
+}
+
+.show-sm { // show on mobile
+	display: none !important;
+	@include breakpoint(phone) {
+		display: block !important;
+	}
+}
+
+.show-md { // show on mobile and tablet
+	display: none !important;
+	@include breakpoint(touch) {
+		display: block !important;
+	}
+}
+
+.hide-sm { // hide on mobile
+	@include breakpoint(phone) {
+		display: none !important;
+	}
+}
+
+.hide-md { // hide on mobile and tablet
+	@include breakpoint(touch) {
+		display: none !important;
+	}
+}
+
+.flex-direction-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-direction-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-direction-row-sm-col {
+	display: flex;
+	flex-direction: row;
+	@include breakpoint(phone) {
+		flex-direction: column;
+	}
+}
+
+.space-between {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.flex-centered {
+	display: flex;
+	justify-content: center;
+}
+
+.vertically-allign {
+	display: flex;
+	align-items: center;
+	align-self: center;
+}
+
+.baseline-allign {
+    display: flex;
+    align-items: baseline;
+}
+.sticky {
+    position: sticky;
+    top: 20px;
+}
+
+.hidden {
+	display: none;
+}
+
+/*----------  containers with border
+------------------------------------------------------------------------------*/
+
+	$borders: top bottom;
+
+	@mixin border-class {
+	  @each $border in $borders {
+		.border-#{$border} {
+			width: 100%;
+			float: left;
+			border-#{$border}: 1px solid $greye2;
+		}
+		.border-#{$border}-#{mob} {
+			@include breakpoint(phone) {
+				width: 100%;
+				float: left;
+				border-#{$border}: 1px solid $greye2;
+			}
+		}
+	  }
+	}
+
+	@include border-class;
+
+	// usage:
+	// .border-top
+	// .border-top-mob
+	// .border-bottom
+	// .border-bottom-mob
+
+	$brdrs: top bottom;
+
+	@mixin brdr-class {
+	  @each $brdr in $brdrs {
+		.brdr-#{$brdr} {
+			border-#{$brdr}: 1px solid $greye2;
+		}
+	  }
+	}
+
+	@include brdr-class;
+
+	// usage:
+	// .brdr-top
+	// .brdr-bottom
+
+
+/*----------  containers margin top or bottom
+------------------------------------------------------------------------------*/
+
+$margin: 1;
+
+@while $margin < 41 {
+	.mt#{$margin} {
+		margin-top: $margin + px;
+	}
+	.mb#{$margin} {
+		margin-bottom: $margin + px;
+	}
+	.pt#{$margin} {
+		padding-top: $margin + px;
+	}
+	.pb#{$margin} {
+		padding-bottom: $margin + px;
+	}
+	$margin: $margin + 1;
+}
+
+$padding: 0;
+
+@while $padding < 41 {
+	.plr#{$padding} {
+		padding-left: $padding + px;
+		padding-right: $padding + px;
+	}
+	$padding: $padding + 10;
+}

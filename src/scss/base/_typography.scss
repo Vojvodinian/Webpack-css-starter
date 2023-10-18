@@ -1,0 +1,169 @@
+/*----------  typography
+------------------------------------------------------------------------------*/
+h1 {
+	color: green;
+	font-size: 42px;
+	line-height: 42px;
+	font-weight: 900;
+	margin-bottom: 25px;
+}
+
+h2 {
+	color: $yellow;
+	font-size: 42px;
+	line-height: 42px;
+	font-weight: 900;
+	margin-bottom: 25px;
+}
+
+h3 {
+	line-height: 28px;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+h4 {
+	color: $blue-dark;
+	font-size: 28px;
+	line-height: 42px;
+	font-weight: 700;
+}
+
+h5 {
+	color: $blue-dark;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 19px;
+	margin-bottom: 15px;
+}
+
+h6 {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 19px;
+	margin-bottom: 4px;
+}
+
+.fw-500 {
+	font-weight: 500 !important;
+}
+
+.green-text {
+	color: $green !important;
+}
+.blue-text {
+	color: $blue !important;
+}
+.blue-dark-text {
+	color: $blue-dark !important;
+}
+.red-text {
+	color: $red !important;
+}
+.yellow-text {
+	color: $yellow !important;
+}
+
+.grey-text {
+	color: $grey41 !important;
+}
+
+.white-text {
+	color: $white !important;
+}
+
+.light-grey-text {
+  color: $grey9d !important;
+}
+
+.small-text {
+	font-size: 12px !important;
+}
+p {
+	font-weight: 300;
+	font-size: 14px;
+	color: $grey53;
+	line-height: 19px;
+}
+.inline-link  {
+	display: inline-block;
+	position: relative;
+}
+
+.bolded {
+	font-weight: 700;
+}
+.link {
+	font-weight: 700;
+	position: relative;
+	color: $blue;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.link-underline {
+  text-decoration: underline;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.break-word {
+	word-wrap: break-word;
+}
+
+ul {
+	li {
+		color: $grey53;
+		line-height: 24px;
+	}
+	&.disc {
+		padding-left: 15px;
+		text-indent: -6px;
+		list-style-type: disc;
+		li {
+			list-style: inherit;
+		}
+	}
+}
+
+.rte {
+	p {
+		line-height: 24px;
+		margin-bottom: 15px;
+	}
+	br {
+		display: none;
+	}
+	a {
+		color: #0050ff;
+		font-weight: 700;
+	}
+	ul {
+		margin-left: 20px;
+		li {
+			list-style-type: disc;
+			margin: 0;
+			padding: 0;
+			color: $grey53;
+			line-height: 24px;
+			}
+		}
+  	ol {
+			padding: 2px;
+			list-style-type: decimal;
+			counter-reset: item;
+  		li {
+	  		counter-increment: item;
+				list-style: none inside;
+				color: $grey53;
+				margin-bottom: 17px;
+				&::before {
+					content: counter(item) ')';
+					padding-right: 5px;
+			 }
+		 }
+   }
+}
